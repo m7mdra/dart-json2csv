@@ -3,9 +3,9 @@ part of json2csv;
 Table convert(input) {
   var outRows = [];
   var inList = _listFrom(input is String ? json.decode(input) : input);
-  var firstRow = new Row();
+  var firstRow = Row();
   for (var row in inList) {
-    var it = new Row();
+    var it = Row();
     var obj = JSONFlattener.flatten(row);
     for (var key in obj.keys) {
       if (!firstRow.values.contains(key)) {
@@ -17,9 +17,9 @@ Table convert(input) {
   }
   var table = Table();
   table.append(firstRow);
-  outRows.forEach((element) {
+  for (var element in outRows) {
     table.append(element);
-  });
+  }
   return table;
 }
 
@@ -69,8 +69,8 @@ class JSONFlattener {
     } else if (input is List) {
       var out = {};
       for (int i = 0; i < input.length; i++) {
-        var new_stuff = visit(input[i], path + i.toString() + "/");
-        out.addAll(new_stuff);
+        var newStuff = visit(input[i], "$path$i/");
+        out.addAll(newStuff);
       }
       return out.cast();
     } else {

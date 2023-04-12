@@ -1,4 +1,4 @@
-import 'package:json2csv/json2csv.dart' as JSON2CSV;
+import 'package:json2csv/json2csv.dart' as json2csv;
 
 import 'package:test/test.dart';
 
@@ -20,7 +20,7 @@ void main() {
       }
       """;
 
-      var csv = JSON2CSV.convert(input);
+      var csv = json2csv.convert(input);
       print(csv.toString());
       var rows = csv.rows;
       expect(rows.length, equals(3), reason: "there should be 3 rows");
